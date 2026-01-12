@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Lost & Found</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🎒 School Lost & Found</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#browse" class="nav-link">Browse Items</a></li>
+                <li><a href="#report" class="nav-link">Report Found Item</a></li>
+                <li><a href="#contact" class="nav-link">Contact Us</a></li>
+                <li><a href="#admin" class="nav-link">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="container">
+            <div class="hero">
+                <h2>Welcome to School Lost & Found</h2>
+                <p>Help reunite students with their lost belongings</p>
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3 id="totalItems">0</h3>
+                        <p>Items Found</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="claimedItems">0</h3>
+                        <p>Items Claimed</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 id="pendingClaims">0</h3>
+                        <p>Pending Claims</p>
+                    </div>
+                </div>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="navigateTo('browse')">Browse Lost Items</button>
+                    <button class="btn btn-secondary" onclick="navigateTo('report')">Report Found Item</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Browse Items Section -->
+    <section id="browse" class="section">
+        <div class="container">
+            <h2>Browse Lost Items</h2>
+            
+            <!-- Search and Filter -->
+            <div class="search-filter">
+                <input type="text" id="searchInput" placeholder="Search by item name, location, or description..." class="search-box">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Books">Books & Stationery</option>
+                    <option value="Sports">Sports Equipment</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Other">Other</option>
+                </select>
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Claimed">Claimed</option>
+                </select>
+            </div>
+
+            <!-- Items Grid -->
+            <div id="itemsGrid" class="items-grid">
+                <!-- Items will be dynamically inserted here -->
+            </div>
+
+            <div id="noItems" class="no-items" style="display: none;">
+                <p>No items found. Be the first to report a found item!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Found Item Section -->
+    <section id="report" class="section">
+        <div class="container">
+            <h2>Report a Found Item</h2>
+            <div class="form-container">
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="itemName">Item Name *</label>
+                        <input type="text" id="itemName" required placeholder="e.g., Blue Water Bottle">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" required>
+                            <option value="">Select a category</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Books">Books & Stationery</option>
+                            <option value="Sports">Sports Equipment</option>
+                            <option value="Accessories">Accessories</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <textarea id="description" rows="4" required placeholder="Provide detailed description (color, brand, unique features...)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location Found *</label>
+                        <input type="text" id="location" required placeholder="e.g., Library, Gym, Cafeteria">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateFound">Date Found *</label>
+                        <input type="date" id="dateFound" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="finderName">Your Name *</label>
+                        <input type="text" id="finderName" required placeholder="Your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="finderContact">Contact Information *</label>
+                        <input type="text" id="finderContact" required placeholder="Email or phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemPhoto">Upload Photo (Optional)</label>
+                        <input type="file" id="itemPhoto" accept="image/*">
+                        <div id="photoPreview" class="photo-preview"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Found Item</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+      <!-- Contact Us Section -->
+<section id="contact" class="section">
+    <div class="container">
+        <h2>📞 Contact Us</h2>
+        <p>If you have questions or need help, please contact us below.</p>
+
+        <div class="form-container" style="max-width: 600px;">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactName">Your Name *</label>
+                    <input type="text" id="contactName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactEmail">Your Email *</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactMessage">Message *</label>
+                    <textarea id="contactMessage" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Admin Section -->
+    <section id="admin" class="section">
+        <div class="container">
+            <h2>Admin Panel</h2>
+            
+            <div class="admin-login" id="adminLogin">
+                <div class="form-container" style="max-width: 400px;">
+                    <h3>Admin Login</h3>
+                    <form id="adminLoginForm">
+                        <div class="form-group">
+                            <label for="adminPassword">Password</label>
+                            <input type="password" id="adminPassword" placeholder="Enter admin password">
+                            <small>Default password: admin123</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="admin-panel" id="adminPanel" style="display: none;">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="switchTab('pending')">Pending Items (<span id="pendingCount">0</span>)</button>
+                    <button class="tab-btn" onclick="switchTab('approved')">Approved Items (<span id="approvedCount">0</span>)</button>
+                    <button class="tab-btn" onclick="switchTab('claims')">Claims (<span id="claimsCount">0</span>)</button>
+                </div>
+
+                <div id="pendingTab" class="tab-content active">
+                    <h3>Pending Items</h3>
+                    <div id="pendingItems" class="admin-items"></div>
+                </div>
+
+                <div id="approvedTab" class="tab-content">
+                    <h3>Approved Items</h3>
+                    <div id="approvedItems" class="admin-items"></div>
+                </div>
+
+                <div id="claimsTab" class="tab-content">
+                    <h3>Item Claims</h3>
+                    <div id="claimsItems" class="admin-items"></div>
+                </div>
+
+                <button class="btn btn-secondary" onclick="logout()" style="margin-top: 20px;">Logout</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Item Detail Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="itemDetails"></div>
+        </div>
+    </div>
+
+    <!-- Claim Form Modal -->
+    <div id="claimModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Claim This Item</h3>
+            <form id="claimForm">
+                <input type="hidden" id="claimItemId">
+                <div class="form-group">
+                    <label for="claimantName">Your Name *</label>
+                    <input type="text" id="claimantName" required>
+                </div>
+                <div class="form-group">
+                    <label for="claimantContact">Contact Information *</label>
+                    <input type="text" id="claimantContact" required>
+                </div>
+                <div class="form-group">
+                    <label for="claimDescription">Why do you believe this is your item? *</label>
+                    <textarea id="claimDescription" rows="4" required placeholder="Describe unique features, where you lost it, etc."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Claim</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
